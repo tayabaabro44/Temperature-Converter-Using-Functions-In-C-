@@ -1,0 +1,87 @@
+#include <iostream>
+#include <iomanip>   // for fixed and setprecision
+#include <cstdlib>   // for system("clear") to clear screen
+using namespace std;
+double celsiusToFahrenheit(double c);  // Converts Celsius to Fahrenheit
+double fahrenheitToCelsius(double f);  // Converts Fahrenheit to Celsius
+double celsiusToKelvin(double c);      // Converts Celsius to Kelvin
+double kelvinToCelsius(double k);      // Converts Kelvin to Celsius
+void displayMenu();                    // Shows menu options to user
+int main() {
+    int choice;
+    double temp, result;
+    char repeat;
+do {
+        system("CLS");
+
+        cout << "=============================================\n";
+        cout << "        🌡️ TEMPERATURE CONVERTER SYSTEM       \n";
+        cout << "=============================================\n";
+displayMenu();  // Show menu options
+cout << "\nEnter your choice (1-4): ";
+cin >> choice;
+// Format output to show only 2 decimal places
+        cout << fixed << setprecision(2);
+ switch (choice) {
+            case 1:  // Celsius to Fahrenheit
+                cout << "\nEnter temperature in Celsius: ";
+                cin >> temp;
+                result = celsiusToFahrenheit(temp);  // calling function
+                cout << "\n" << temp << " °C = " << result << " °F\n";
+                break;
+           case 2:  // Fahrenheit to Celsius
+                cout << "\nEnter temperature in Fahrenheit: ";
+                cin >> temp;
+                result = fahrenheitToCelsius(temp);
+                cout << "\n" << temp << " °F = " << result << " °C\n";
+                break;
+           case 3:  // Celsius to Kelvin
+                cout << "\nEnter temperature in Celsius: ";
+                cin >> temp;
+                result = celsiusToKelvin(temp);
+                cout << "\n" << temp << " °C = " << result << " K\n";
+                break;
+           case 4:  // Kelvin to Celsius
+                cout << "\nEnter temperature in Kelvin: ";
+                cin >> temp;
+                result = kelvinToCelsius(temp);
+                cout << "\n" << temp << " K = " << result << " °C\n";
+                break;
+
+            default:
+                // Handles invalid inputs
+                cout << "\n❌ Invalid choice! Please select from 1-4.\n";
+        }
+
+        // Asking user if they want to convert again
+        cout << "\n---------------------------------------------\n";
+        cout << "Do you want to convert again? (Y/N): ";
+        cin >> repeat;
+
+    } while (repeat == 'Y' || repeat == 'y');  // Loop until user says no
+
+    // Exit message
+    cout << "\n=============================================\n";
+    cout << "   Thank you for using Temperature Converter!  \n";
+    cout << "=============================================\n";
+
+    return 0;
+}
+void displayMenu() {
+    cout << "\n1. Convert Celsius → Fahrenheit";
+    cout << "\n2. Convert Fahrenheit → Celsius";
+    cout << "\n3. Convert Celsius → Kelvin";
+    cout << "\n4. Convert Kelvin → Celsius\n";
+}
+double celsiusToFahrenheit(double c) {
+    return (c * 9.0 / 5.0) + 32;
+}
+double fahrenheitToCelsius(double f) {
+    return (f - 32) * 5.0 / 9.0;
+}
+double celsiusToKelvin(double c) {
+    return c + 273.15;
+}
+double kelvinToCelsius(double k) {
+    return k - 273.15;
+}
